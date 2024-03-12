@@ -15,7 +15,6 @@ const RangeSlider = (props: RangeSliderProps) => {
   const [userMax, setUserMax] = useState(0);
 
   useEffect(() => {
-    graphData.push(0);
     setMax(Math.max(...graphData));
     setMin(Math.min(...graphData));
   }, [])
