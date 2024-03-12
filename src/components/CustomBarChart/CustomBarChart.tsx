@@ -1,23 +1,20 @@
-import { View, Text } from 'react-native'
+
 import React from 'react'
-import { BarChart, Grid } from 'react-native-svg-charts'
+import { BarChart, } from 'react-native-svg-charts'
 import { styles } from './styles'
 
 type Props = {
     data: Array<number>
+    barColor?: string
 }
 
-const CustomBarChart = ({ data }: Props) => {
-    console.log(data);
-
+const CustomBarChart = ({ data, barColor }: Props) => {
     return (
         <BarChart
             style={styles.BarChart}
             data={data}
-            svg={{ fill: "#000" }}
-        >
-            <Grid />
-        </BarChart>
+            svg={{ fill: barColor ?? "#000" }}
+        />
     )
 }
 

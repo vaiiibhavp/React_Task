@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataItem, RangeSliderProps } from './type';
 import { styles } from './styles';
 import CustomBarChart from '../CustomBarChart/CustomBarChart';
@@ -9,8 +9,20 @@ import RangePicker from '../RangePicker/RangePicker';
 const RangeSlider = (props: RangeSliderProps) => {
   const { title, subTitle, data, onChange } = props || {};
   const graphData = data?.map((ele: DataItem) => ele.value) || [];
+  const [max, setMax] = useState(0);
+  const [min, setMin] = useState(0);
+  const [userMin, setUserMin] = useState(0);
+  const [userMax, setUserMax] = useState(0);
+
+  useEffect(() => {
+    graphData.push(0);
+    setMax(Math.max(...graphData));
+    setMin(Math.min(...graphData));
+  }, [])
 
   function onSliderRangeUpdate(min: number, max: number) {
+    setUserMax(max);
+    setUserMin(min);
     /*
     filter the data with min and max 
     */
@@ -18,22 +30,41 @@ const RangeSlider = (props: RangeSliderProps) => {
     onChange && onChange(newData);
   }
 
+  //do not update the min max after render
+  if (max === 0) {
+    return <></>
+  }
+
   return (
     <View>
-      <View>
+      <View style={styles.viewTitleContainer}>
         <Text style={styles.textTitle}>{title}</Text>
         <Text style={styles.textSubtitle}>{subTitle}</Text>
       </View>
-      <CustomBarChart
-        data={graphData}
-      />
+      <View>
+        <CustomBarChart
+          data={graphData}
+          barColor={"#ccc"}
+        />
+      </View>
       <View>
         <View style={styles.viewRangePickerContainer}>
           <RangePicker
-            max={50}
-            min={0}
+            max={max}
+            min={min}
             onValueChanged={onSliderRangeUpdate}
           />
+        </View>
+        <View style={styles.viewRowBetween}>
+          <View style={styles.viewMinMaxContainer}>
+            <Text style={styles.textMinimum}>{"Minimum"}</Text>
+            <Text style={styles.textAmount}>{"$ " + userMin ?? 0}</Text>
+          </View>
+          <View style={styles.viewLine} />
+          <View style={styles.viewMinMaxContainer}>
+            <Text style={styles.textMinimum}>{"Maximum"}</Text>
+            <Text style={styles.textAmount}>{"$ " + userMax ?? 0}</Text>
+          </View>
         </View>
       </View>
     </View>

@@ -16,7 +16,38 @@ export const styles = StyleSheet.create({
         position: "absolute",
         zIndex: 1,
         top: -13,
-        left: 0,
-        right: 0,
+        left: -10,
+        right: -10,
+    },
+    viewTitleContainer: {
+        marginVertical: 20
+    },
+    viewRowBetween: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    viewMinMaxContainer: {
+        flex: 0.45,
+        marginVertical: 20,
+        borderWidth: 1,
+        borderColor: "#CCC",
+        borderRadius: 5,
+        padding: 10,
+    },
+    viewLine: {
+        backgroundColor: "#CCC",
+        height: 1,
+        flex: 0.05
+    },
+    textMinimum: {
+        fontSize: 14,
+        color: "#999",
+        fontWeight: "400",
+    },
+    textAmount: {
+        fontSize: 14,
+        color: "#000",
+        fontWeight: "400",
     }
 })
