@@ -12,7 +12,7 @@ const RangeSlider = (props: RangeSliderProps) => {
   const [max, setMax] = useState(0);
   const [min, setMin] = useState(0);
   const [userMin, setUserMin] = useState(0);
-  const [userMax, setUserMax] = useState(0);
+  const [userMax, setUserMax] = useState(max);
 
   useEffect(() => {
     setMax(Math.max(...graphData));
@@ -41,6 +41,7 @@ const RangeSlider = (props: RangeSliderProps) => {
         <Text style={styles.textSubtitle}>{subTitle}</Text>
       </View>
       <View>
+        <Text style={styles.textRange}>{`Your budget ($${userMin}  -  $${userMax})`}</Text>
         <CustomBarChart
           data={graphData}
           barColor={"#ccc"}
@@ -57,12 +58,12 @@ const RangeSlider = (props: RangeSliderProps) => {
         <View style={styles.viewRowBetween}>
           <View style={styles.viewMinMaxContainer}>
             <Text style={styles.textMinimum}>{"Minimum"}</Text>
-            <Text style={styles.textAmount}>{"$ " + userMin ?? 0}</Text>
+            <Text style={styles.textAmount}>{"$ " + min ?? 0}</Text>
           </View>
           <View style={styles.viewLine} />
           <View style={styles.viewMinMaxContainer}>
             <Text style={styles.textMinimum}>{"Maximum"}</Text>
-            <Text style={styles.textAmount}>{"$ " + userMax ?? 0}</Text>
+            <Text style={styles.textAmount}>{"$ " + max ?? 0}</Text>
           </View>
         </View>
       </View>

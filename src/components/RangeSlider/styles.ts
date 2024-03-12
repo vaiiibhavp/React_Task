@@ -12,6 +12,12 @@ export const styles = StyleSheet.create({
         fontWeight: "400",
         marginTop: 2
     },
+    textRange: {
+        fontSize: 14,
+        color: "#000",
+        fontWeight: "400",
+        marginBottom: 5
+    },
     viewRangePickerContainer: {
         position: "absolute",
         zIndex: 1,
