@@ -15,10 +15,14 @@ export const tempData: Array<DataItem> = [
     },
     {
         amount: 4,
-        value: 0
+        value: 2
     },
     {
         amount: 4,
         value: 5
     },
+    {
+        amount: 2,
+        value: 9
+    }
 ];

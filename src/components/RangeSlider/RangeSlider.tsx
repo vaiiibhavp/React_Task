@@ -45,6 +45,7 @@ const RangeSlider = (props: RangeSliderProps) => {
         <CustomBarChart
           data={graphData}
           barColor={"#ccc"}
+          max={max}
         />
       </View>
       <View>
